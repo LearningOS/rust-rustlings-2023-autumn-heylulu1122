@@ -11,13 +11,20 @@
 
 // I AM NOT DONE
 
+
+    
 pub fn generate_nametag_text(name: String) -> Option<String> {
-    if name.is_empty() {
-        // Empty names aren't allowed.
-        None
-    } else {
-        Some(format!("Hi! My name is {}", name))
+    enum Result<r#type(T), type(E)> {
+        Ok(T),
+        Err(E),
     }
+    
+    if name.is_empty() {
+       // Empty names aren't allowed.
+        Err("`name` was empty; it must be nonempty.".to_string())
+    } else {
+        Ok(format!("Hi! My name is {}", name))
+    }  
 }
 
 #[cfg(test)]
